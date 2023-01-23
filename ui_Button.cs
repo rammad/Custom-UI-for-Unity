@@ -5,8 +5,10 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Sprite), typeof(Animator))]
 
+// An example class of how to inheirit from UI Element to create different interactions
 public class ui_Button : ui_Element
 {
+    // Allows customization of individual button functionality in the inspector
     public UnityEvent whenClicked;
 
     Animator anim;
