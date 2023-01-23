@@ -4,6 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
 
+// Be sure to parent all UI Element objects to a UI Menu object!!!
+// Designed for hierarchy organization and easily switching between menus
 public class ui_Menu : MonoBehaviour
 {
     public ui_Element[] elements;
@@ -16,7 +18,7 @@ public class ui_Menu : MonoBehaviour
     {
         elements = GetComponentsInChildren<ui_Element>();
     }
-
+    
     private void Start()
     {
         manager = FindObjectOfType<ui_Manager>();
