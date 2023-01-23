@@ -4,14 +4,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
 
+// The parent class for all current and future UI Elements to inheirit from
+// Currently only used by UI Button but will later be used for other interactions as well ( ex. Slider, Health Bar, ect. )
 public class ui_Element : MonoBehaviour
 {
     public bool selected;
 
     ui_Menu menu;
 
-    //tolerance for what will be considered a neighbor
-    //ex. 0+-navigationAngleTolerance will be considered to the east, 90+-navigationAngleTolerance will be considered to the north, ect.
+    // Tolerance for what will be considered a neighbor
+    // ex. 0+-navigationAngleTolerance will be considered to the east, 90+-navigationAngleTolerance will be considered to the north, ect.
+    // Possibly redundant, all testing has shown that 45% is the most reliable solution with no dead zone
     public float navigationAngleTolerance = 45f;
 
     public ui_Element neighbor_north = null;
@@ -19,7 +22,8 @@ public class ui_Element : MonoBehaviour
     public ui_Element neighbor_west = null;
     public ui_Element neighbor_east = null;
 
-    //find the nearest element in each direction for navigational purposes
+    // Finds the nearest element in each direction for navigational purposes
+    // Chunky solution but very reliable
     public virtual void Start()
     {
         menu = GetComponentInParent<ui_Menu>();
@@ -74,7 +78,9 @@ public class ui_Element : MonoBehaviour
         }
     }
 
+    // Override to decide what occurs if this UI Element is clicked on
     public virtual void onClick() { }
 
+    // Override to decide what occurs if this UI Element is hovered over
     public virtual void onHover() { }
 }
