@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// Coordinates switching between different UI Menus and interactions with the different UI Elements therein
 public class ui_Manager : MonoBehaviour
 {
     [SerializeField] ui_Menu[] menus;
@@ -12,12 +13,11 @@ public class ui_Manager : MonoBehaviour
 
     private void Awake()
     {
-        //turns on the first menu in the menus list
+        // Turns on the first menu in the menus list by default
         if (menus.Length > 0) changeMenu(0);
     }
 
-    //switches the currently visible menu
-    //takes the position of disired menu in the menus list
+    // Switches the currently visible menu given the position of the desired menu in the menus list
     public void changeMenu(int listPos)
     {
         foreach(ui_Menu menu in menus)
@@ -30,7 +30,7 @@ public class ui_Manager : MonoBehaviour
         setSelectedElement(currentMenu.defaultSelected);
     }
 
-    //sets which element of the current menu is currently selected
+    // Sets which element of the current menu is currently selected and resets the state of the other UI Elements in the menu
     public void setSelectedElement(ui_Element currentElement) 
     {
         foreach(ui_Element element in currentMenu.elements)
@@ -46,6 +46,7 @@ public class ui_Manager : MonoBehaviour
         }
     }
 
+    // Determines which UI Element should be switched to when navigating with gamepad or keyboard
     public void switchSelectedElement(Vector2 dir)
     {
         ui_Element oldElement = null;
@@ -66,7 +67,7 @@ public class ui_Manager : MonoBehaviour
         
     }
 
-    //check current cursor position against button locations and set the correct selected element
+    // Checks current cursor position against button locations and sets the correct selected element when navigating using the mouse
     public void hoverCheck()
     {
         ui_Element newSelectedElement = null;
@@ -87,6 +88,7 @@ public class ui_Manager : MonoBehaviour
         setSelectedElement(newSelectedElement);
     }
 
+    // Calls the onClick function of whichever UI Element is currently marked as the Selected element
     public void pressSelectedElement()
     {
         ui_Element gettingClicked = null;
